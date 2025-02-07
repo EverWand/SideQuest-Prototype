@@ -1,53 +1,60 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Task : MonoBehaviour
 {
-    public string taskLabel = "";
-    public int deadline = -1;
-    public float estimatedCompletion;
-    public bool isComplete = false;
-    public Color color;
+    [System.Serializable]
+    public struct TaskDetails
+    {
+        public string name;
+        public float targetTime;
+        public float currTime;
+        public bool isComplete;
+
+        public TaskDetails(string name)
+        {
+            this.name = name;
+            this.targetTime = 0;
+            this.currTime = 0;
+            this.isComplete = false;
+        }
+    }
+
+    public delegate void ClickedCall(Task task);
+    public ClickedCall OnClicked;
 
     [SerializeField] TextMeshProUGUI labelTxt;
-    [SerializeField] TextMeshProUGUI date;
-    [SerializeField] TextMeshProUGUI time;
-    [SerializeField] TextMeshProUGUI estTime;
 
-    [SerializeField] UnityEngine.UI.Image checkImage;
+    [SerializeField] TaskDetails taskDetails;
 
-    private void OnValidate()
+    void OnValidate()
     {
-        #if UNITY_EDITOR
-            FullUpdate();
-        #endif
-
+#if UNITY_EDITOR
+        FullUpdate();
+#endif
     }
 
-    void FullUpdate() { 
-        SetLabel(taskLabel);            //Update label
-        setDate(deadline.ToString());   //Update Date
-        SetTime(time.ToString());       //Update Time
-        SetEstTime(estTime.ToString()); //Update Estimated Time
-        setCompleteDisplay();           //Check Box
-    }
-    void SetLabel(string labelIn) { 
-        labelTxt.text = labelIn;
-    }
-    void SetEstTime(string labelIn)
+    public void Handle_OnClicked(){ OnClicked.Invoke(this);}
+
+    public void SetTaskDetails(TaskDetails details)
     {
-        estTime.text = labelIn;
-    }
-    void SetTime(string labelIn)
-    {
-        time.text = labelIn;
+        taskDetails = details;
+        FullUpdate();
     }
 
-    void setDate(string labelIn) { 
-        date.text = labelIn;
+    void FullUpdate()
+    {
+        SetLabel(taskDetails.name);
     }
-    void setCompleteDisplay() { 
-        checkImage.enabled = isComplete;
+
+    void SetLabel(string labelIn)
+    {
+        if (labelTxt != null)
+            labelTxt.text = labelIn;
+    }
+
+    public TaskDetails GetDetails()
+    {
+        return taskDetails;
     }
 }
