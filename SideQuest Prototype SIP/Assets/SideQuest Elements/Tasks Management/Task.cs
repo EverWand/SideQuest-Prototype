@@ -34,7 +34,7 @@ public class Task : MonoBehaviour
 #endif
     }
 
-    public void Handle_OnClicked(){ OnClicked.Invoke(this);}
+    public void Handle_OnClicked() { OnClicked.Invoke(this); }
 
     public void SetTaskDetails(TaskDetails details)
     {
