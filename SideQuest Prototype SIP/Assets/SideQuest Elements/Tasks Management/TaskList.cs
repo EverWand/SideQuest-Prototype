@@ -2,20 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Task;
 
-public class TaskList : MonoBehaviour
+public class TaskList : MonoBehaviour , ISaveSystem
 {
-    [SerializeField] GameObject TaskPrefab;
-    [SerializeField] Transform TaskListRoot;
-
     [SerializeField] List<Task> tasks = new List<Task>();
 
     [SerializeField] public Task focusTask { get; private set; } //The List's selected task
 
-    public void AddTask(Task.TaskDetails details)
-    {
-        tasks.Add(CreateTask(details));
+    public delegate Task TaskAddCall(Task task);
+    public TaskAddCall OnTaskAdded;
 
-        Debug.Log("Current Amount of Tasks - " + tasks[tasks.Count - 1].name);
+
+    public void AddTask(Task task)
+    {
+        tasks.Add(task);
+        OnTaskAdded.Invoke(task);
     }
 
     public void RemoveFocusTask()
@@ -38,16 +38,4 @@ public class TaskList : MonoBehaviour
 
     public void OnTaskSelected(Task selected)
     { focusTask = selected; }
-
-    Task CreateTask(TaskDetails details)
-    {
-        GameObject newTask = Instantiate(TaskPrefab, Vector3.zero, Quaternion.identity, TaskListRoot);
-        //Debug.Log("Created Task");
-        Task taskScript = newTask.GetComponent<Task>();
-
-        taskScript.SetTaskDetails(details); //Set the Details of the task
-        taskScript.OnClicked += OnTaskSelected;
-
-        return taskScript;
-    }
 }

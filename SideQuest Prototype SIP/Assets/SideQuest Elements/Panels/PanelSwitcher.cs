@@ -12,16 +12,17 @@ public class PanelSwitcher : MonoBehaviour
 
     private void Start()
     {
-        if (rootPanel == null) { 
+        if (rootPanel == null)
+        {
             rootPanel = panelList[0]; //Make the Root the beginning panel of the list
         }
 
-        RemoveAllPanels(); //Disable All Panels
+        //RemoveAllPanels(); //Disable All Panels
         FocusRootPanel();   //Make the Root panel the initial focus
     }
 
     /*Generic Method That will switch to a specific type of Panel if it exists*/
-    public void SwitchPanel<T>(T panelType) where T : SQ_Panel
+    public SQ_Panel SwitchPanel<T>() where T : SQ_Panel
     {
         //Go through Each Panel
         foreach (SQ_Panel panel in panelList)
@@ -29,25 +30,25 @@ public class PanelSwitcher : MonoBehaviour
             //Check if the panel is the same type as requested panel Type
             if (panel is T)
             {
-                SwitchPanel(panel);
+                return SwitchPanel(panel);
             }
         }
-
-        //If there's a panel saved under the Switcher's Panels list -> Do the Swap
-
-        //Return the Panel reference - Just Cuz
+        return null;
     }
 
-    public void SwitchPanel(int index) {
-        if (panelList.Count-1 > index || index < 0) {
+    public void SwitchPanel(int index)
+    {
+        if (panelList.Count - 1 > index || index < 0)
+        {
             Debug.LogError("Index Out of Range of " + gameObject.name + " Panel List.");
-            return; 
+            return;
         }
 
-       SwitchPanel(panelList[index]);
+        SwitchPanel(panelList[index]);
     }
 
-    void SwitchPanel(SQ_Panel panel) {
+    SQ_Panel SwitchPanel(SQ_Panel panel)
+    {
         //test this concept out first... but maybe only disable the new prev panel and remove the old prev panel?
 
 
@@ -57,8 +58,16 @@ public class PanelSwitcher : MonoBehaviour
 
         //Create the New Panel
         currPanel = CreatePanel(panel.panelPrefab);
+
+        return currPanel;
     }
-    public void FocusRootPanel() { 
+    public void FocusRootPanel()
+    {
+        if ( rootPanel == null)
+        {
+            rootPanel = CreatePanel(rootPanel.panelPrefab);
+        }
+
         SwitchPanel(rootPanel);
     }
 
@@ -71,8 +80,10 @@ public class PanelSwitcher : MonoBehaviour
     }
 
     //Ensures that all Panels have been Disabled
-    void RemoveAllPanels() {
-        foreach (SQ_Panel panel in switcherRoot.GetComponentsInChildren<SQ_Panel>()) { 
+    void RemoveAllPanels()
+    {
+        foreach (SQ_Panel panel in switcherRoot.GetComponentsInChildren<SQ_Panel>())
+        {
             panel.OnRemoved.Invoke();
         }
     }

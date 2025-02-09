@@ -1,14 +1,20 @@
 using UnityEngine;
-using static Task;
 
 public class RootPanel : SQ_Panel
 {
-    public Task.TaskDetails demoDetails;
-
     [SerializeField] TaskList taskList;
 
-    public void AddTasktoList() {
-        //Debug.Log("Adding new Task to List - Talking to " + taskList.name);
-        taskList.AddTask(demoDetails);
+    public void Handle_AddTask() {
+         TaskEditor editor = GameManager.instance.GetComponent<PanelSwitcher>().SwitchPanel<TaskEditor>() as TaskEditor; //Switch to EditorPanel
+
+        editor.OnOpen(TaskEditor.EditorMode.Create); //Open Editor in Task Creation Mode
+    }
+
+    public void Handle_RemoveTask() { }
+
+    public void Handle_EditTask() {
+        TaskEditor editor = GameManager.instance.GetComponent<PanelSwitcher>().SwitchPanel<TaskEditor>() as TaskEditor; //Switch to EditorPanel
+
+        editor.OnOpen(TaskEditor.EditorMode.Edit); //Open Editor in Edit Mode
     }
 }

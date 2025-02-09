@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Task : MonoBehaviour
 {
@@ -20,41 +20,14 @@ public class Task : MonoBehaviour
         }
     }
 
-    public delegate void ClickedCall(Task task);
-    public ClickedCall OnClicked;
+    [SerializeField] public TaskDetails taskDetails { get; private set; }
 
-    [SerializeField] TextMeshProUGUI labelTxt;
+    UnityAction OnDetailsUpdate; 
 
-    [SerializeField] TaskDetails taskDetails;
-
-    void OnValidate()
-    {
-#if UNITY_EDITOR
-        FullUpdate();
-#endif
-    }
-
-    public void Handle_OnClicked() { OnClicked.Invoke(this); }
 
     public void SetTaskDetails(TaskDetails details)
     {
         taskDetails = details;
-        FullUpdate();
-    }
-
-    void FullUpdate()
-    {
-        SetLabel(taskDetails.name);
-    }
-
-    void SetLabel(string labelIn)
-    {
-        if (labelTxt != null)
-            labelTxt.text = labelIn;
-    }
-
-    public TaskDetails GetDetails()
-    {
-        return taskDetails;
+        OnDetailsUpdate.Invoke();
     }
 }
