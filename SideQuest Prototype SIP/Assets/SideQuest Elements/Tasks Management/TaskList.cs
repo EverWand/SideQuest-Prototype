@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static Task;
 
-public class TaskList : MonoBehaviour , ISaveSystem
+public class TaskList : MonoBehaviour, ISaveSystem
 {
     [SerializeField] List<Task> tasks = new List<Task>();
 
@@ -12,11 +11,14 @@ public class TaskList : MonoBehaviour , ISaveSystem
     public TaskAddCall OnTaskAdded;
 
 
-    public void AddTask(Task task)
+    public Task AddTask(Task task)
     {
         tasks.Add(task);
         OnTaskAdded.Invoke(task);
+
+        return task;
     }
+
 
     public void RemoveFocusTask()
     {
@@ -38,4 +40,5 @@ public class TaskList : MonoBehaviour , ISaveSystem
 
     public void OnTaskSelected(Task selected)
     { focusTask = selected; }
+
 }

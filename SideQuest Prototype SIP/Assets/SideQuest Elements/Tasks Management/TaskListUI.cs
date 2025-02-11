@@ -1,5 +1,4 @@
 using UnityEngine;
-using static Task;
 
 public class TaskListUI : MonoBehaviour
 {
@@ -7,9 +6,6 @@ public class TaskListUI : MonoBehaviour
     [SerializeField] Transform TaskListRoot;
 
     [SerializeField] TaskList taskList;
-
-
-
 
     private void Awake()
     {

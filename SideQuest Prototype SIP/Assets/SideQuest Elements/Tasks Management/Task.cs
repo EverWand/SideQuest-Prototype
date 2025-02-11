@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Task : MonoBehaviour
 {
     [System.Serializable]
@@ -22,7 +23,7 @@ public class Task : MonoBehaviour
 
     [SerializeField] public TaskDetails taskDetails { get; private set; }
 
-    UnityAction OnDetailsUpdate; 
+    UnityAction OnDetailsUpdate;
 
 
     public void SetTaskDetails(TaskDetails details)
@@ -31,3 +32,4 @@ public class Task : MonoBehaviour
         OnDetailsUpdate.Invoke();
     }
 }
+

@@ -16,9 +16,6 @@ public class PanelSwitcher : MonoBehaviour
         {
             rootPanel = panelList[0]; //Make the Root the beginning panel of the list
         }
-
-        //RemoveAllPanels(); //Disable All Panels
-        FocusRootPanel();   //Make the Root panel the initial focus
     }
 
     /*Generic Method That will switch to a specific type of Panel if it exists*/
@@ -49,21 +46,22 @@ public class PanelSwitcher : MonoBehaviour
 
     SQ_Panel SwitchPanel(SQ_Panel panel)
     {
-        //test this concept out first... but maybe only disable the new prev panel and remove the old prev panel?
-
-
-        /*Disable the Previous Panel*/
-        prevPanel = currPanel; //Set the current panel as the previoud panel
-        prevPanel.OnRemoved.Invoke();
-
+        if (panel == null) { return null; }
+        prevPanel = currPanel; //Make the Current panel now the previous panel
+        
+        if (prevPanel != null)
+        {
+            prevPanel.OnRemoved?.Invoke();
+        }
         //Create the New Panel
         currPanel = CreatePanel(panel.panelPrefab);
+        currPanel.OnCreated?.Invoke();
 
         return currPanel;
     }
     public void FocusRootPanel()
     {
-        if ( rootPanel == null)
+        if (!rootPanel)
         {
             rootPanel = CreatePanel(rootPanel.panelPrefab);
         }
@@ -73,10 +71,13 @@ public class PanelSwitcher : MonoBehaviour
 
     SQ_Panel CreatePanel(GameObject panelObj)
     {
-        SQ_Panel newPanel = Instantiate(panelObj, Vector3.zero, Quaternion.identity, switcherRoot).GetComponent<SQ_Panel>();
-        currPanel.OnCreated.Invoke();
+        SQ_Panel newPanel = Instantiate(panelObj, switcherRoot).GetComponent<SQ_Panel>();
 
         return newPanel;
+    }
+
+    public SQ_Panel GoBack() {
+        return SwitchPanel(prevPanel);
     }
 
     //Ensures that all Panels have been Disabled

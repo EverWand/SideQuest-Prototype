@@ -332,7 +332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 125926536747933856}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
+        m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1208493672485786178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,7 +1640,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3374553253495473016}
         m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
-        m_MethodName: AddTasktoList
+        m_MethodName: Handle_AddTask
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2364,7 +2376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4533097832916120538}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3374553253495473016}
+        m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
+        m_MethodName: Handle_EditTask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7310080366383704452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,12 +2872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7c1f83994101f43ba8101fc52a8c27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  demoDetails:
-    name: Demo Title
-    targetTime: 0
-    currTime: 0
-    isComplete: 0
-  taskList: {fileID: 8116380943425521395}
+  panelPrefab: {fileID: 9185559228551195026}
 --- !u!1001 &2023459410556003522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3148,7 +3167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5362675339864813212, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5446802959539244575, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3244,11 +3263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8561845483524255364, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8561845483524255364, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3260,14 +3279,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2215849685282005782, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
   m_PrefabInstance: {fileID: 2023459410556003522}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8116380943425521395 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7833986176158294577, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
-  m_PrefabInstance: {fileID: 2023459410556003522}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33db5692a1bd85849930ddcaff40f87c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

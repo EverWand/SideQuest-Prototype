@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    List<Task> savedTasks = new List<Task>();
     [SerializeField] PanelSwitcher panelSwitcher;
 
 
@@ -14,7 +12,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -23,5 +21,10 @@ public class GameManager : MonoBehaviour
         }
 
         if (panelSwitcher == null) { panelSwitcher = GetComponent<PanelSwitcher>(); }
+    }
+
+    private void Start()
+    {
+        panelSwitcher.FocusRootPanel();
     }
 }

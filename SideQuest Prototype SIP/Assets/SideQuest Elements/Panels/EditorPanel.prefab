@@ -852,7 +852,6 @@ GameObject:
   - component: {fileID: 3592957313482524194}
   - component: {fileID: 8227201533867102331}
   - component: {fileID: 5568425277555339093}
-  - component: {fileID: 1685954271064477093}
   - component: {fileID: 8016951500530721552}
   - component: {fileID: -5978299539374242290}
   m_Layer: 5
@@ -922,24 +921,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1685954271064477093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937468284709189525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7c1f83994101f43ba8101fc52a8c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  demoDetails:
-    name: Demo Title
-    targetTime: 0
-    currTime: 0
-    isComplete: 0
-  taskList: {fileID: 0}
 --- !u!114 &8016951500530721552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,6 +947,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c063dc974c858449ace0a210c74027d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelPrefab: {fileID: 937468284709189525}
+  nameInput: {fileID: 7887996595200282653}
+  hours: {fileID: 0}
+  minutes: {fileID: 0}
+  year: {fileID: 0}
+  month: {fileID: 0}
+  day: {fileID: 0}
 --- !u!1 &981682493684413337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,7 +2739,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.9
+  m_fontSize: 17.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5077,7 +5065,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.1
+  m_fontSize: 18.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5513,7 +5501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 795357934903861257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 937468284709189525}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8051219703338883364
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public abstract class SQ_Panel : MonoBehaviour
 {
-    [SerializeField] public GameObject panelPrefab { get; private set; }
+    [SerializeField] public GameObject panelPrefab;
 
     public UnityAction OnRemoved;
     public UnityAction OnCreated;
