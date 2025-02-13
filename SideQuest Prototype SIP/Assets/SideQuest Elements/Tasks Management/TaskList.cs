@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class TaskList : MonoBehaviour, ISaveSystem
@@ -14,28 +15,28 @@ public class TaskList : MonoBehaviour, ISaveSystem
     public Task AddTask(Task task)
     {
         tasks.Add(task);
-        OnTaskAdded.Invoke(task);
+        OnTaskAdded?.Invoke(task);
 
         return task;
     }
 
 
-    public void RemoveFocusTask()
+    public Task AddTask()
+    {
+        GameObject taskObj = Instantiate(new GameObject("Task"), GameManager.instance.GetComponent<TaskList>()?.transform);
+        Task task = taskObj?.AddComponent<Task>();
+
+        return AddTask(task);
+    }
+
+    public void RemoveTask(Task task)
     {
         //Gaurd: Prevent Process if there's no focus to target
-        if (focusTask == null) { return; }
+        if (task == null) { return; }
 
-
-        //Check to see if the Focus task is the tasklist
-        if (tasks.Contains(focusTask))
-        {
-            tasks.Remove(focusTask); //Remove the task from the list
-        }
-
-        //Destroy the Task Display if there's one
-        if (focusTask.gameObject) { Destroy(focusTask.gameObject); }
-
-        focusTask = null; // Ensures the focus task has been dereferenced after removal 
+        if (task == focusTask) { focusTask = null; }        //Empty Focus if it's being removed
+        if (tasks.Contains(task)) { tasks.Remove(task); }   //Remove the task from the list
+        if (task.gameObject) { Destroy(task.gameObject); }  //Destroy game object if it exists
     }
 
     public void OnTaskSelected(Task selected)

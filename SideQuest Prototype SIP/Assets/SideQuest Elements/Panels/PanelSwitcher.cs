@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PanelSwitcher : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PanelSwitcher : MonoBehaviour
     public SQ_Panel prevPanel { get; private set; } //Tracks what the was the previous Panel focused on by the Switcher
 
     [SerializeField] List<SQ_Panel> panelList = new List<SQ_Panel>();
+
+    public UnityAction OnBack;
 
     private void Start()
     {
@@ -77,6 +80,7 @@ public class PanelSwitcher : MonoBehaviour
     }
 
     public SQ_Panel GoBack() {
+        OnBack?.Invoke();
         return SwitchPanel(prevPanel);
     }
 

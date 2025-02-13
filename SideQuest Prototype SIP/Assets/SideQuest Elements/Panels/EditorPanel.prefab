@@ -2739,7 +2739,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.5
+  m_fontSize: 25.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4003,10 +4003,10 @@ RectTransform:
   - {fileID: 4048941924291261723}
   m_Father: {fileID: 6901037123420177753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 341.25, y: -21.850006}
+  m_SizeDelta: {x: 67.5, y: 43.700012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2702654538191769569
 CanvasRenderer:
@@ -4089,7 +4089,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6916134632220182414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -5978299539374242290}
+        m_TargetAssemblyTypeName: TaskEditorPanel, Assembly-CSharp
+        m_MethodName: Handle_OnDone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6783393347747934615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,7 +5077,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.8
+  m_fontSize: 27.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5415,10 +5427,10 @@ RectTransform:
   - {fileID: 4633333306697562896}
   m_Father: {fileID: 6901037123420177753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.75, y: -21.850006}
+  m_SizeDelta: {x: 67.5, y: 43.700012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1976582887305656472
 CanvasRenderer:
@@ -5502,13 +5514,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 937468284709189525}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: -5978299539374242290}
+        m_TargetAssemblyTypeName: TaskEditorPanel, Assembly-CSharp
+        m_MethodName: Handle_OnBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

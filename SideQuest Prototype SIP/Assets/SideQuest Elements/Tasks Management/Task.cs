@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Task : MonoBehaviour
+public class Task: MonoBehaviour
 {
     [System.Serializable]
     public struct TaskDetails

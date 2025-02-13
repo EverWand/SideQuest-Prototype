@@ -21,11 +21,11 @@ public abstract class SQ_Panel : MonoBehaviour
 
 
     protected virtual void Handle_OnRemoved() {
-        Debug.Log("Removing " + name);
+        //Debug.Log("Removing " + name);
         Destroy(gameObject); //Destroy Self
     }
 
     protected virtual void Handle_OnFocused() {
-        Debug.Log(name + " is Focused");
+        //Debug.Log(name + " is Focused");
     }
 }
