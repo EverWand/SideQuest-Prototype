@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 964999649458202084}
   - component: {fileID: 7833352281100037978}
   - component: {fileID: 4381439434187118475}
-  - component: {fileID: 7952271683690515902}
+  - component: {fileID: 1085937939923459195}
   m_Layer: 0
   m_Name: TaskDisplay
   m_TagString: Untagged
@@ -250,8 +250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7952271683690515902}
-        m_TargetAssemblyTypeName: Task, Assembly-CSharp
+      - m_Target: {fileID: 1085937939923459195}
+        m_TargetAssemblyTypeName: TaskUI, Assembly-CSharp
         m_MethodName: Handle_OnClicked
         m_Mode: 1
         m_Arguments:
@@ -262,7 +262,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7952271683690515902
+--- !u!114 &1085937939923459195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,15 +271,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423418443421068445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700e8b4ed75d2a244868ebfb6920e463, type: 3}
+  m_Script: {fileID: 11500000, guid: 093f65138384b5040bc965e9d65a4016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  task: {fileID: 0}
   labelTxt: {fileID: 4251980188032441633}
-  taskDetails:
-    name: Task Label
-    targetTime: 0
-    currTime: 0
-    isComplete: 0
 --- !u!1 &2222936391870563591
 GameObject:
   m_ObjectHideFlags: 0

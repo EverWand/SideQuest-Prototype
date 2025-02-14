@@ -20,14 +20,13 @@ public class TaskEditorPanel : SQ_Panel
     [SerializeField] InputField month;
     [SerializeField] InputField day;
 
-    public void OnOpen(EditorMode modeType, Task editTask)
+    public void SetupEditor(EditorMode modeType, Task editTask)
     {
         mode = modeType;
         task = editTask;
 
         WriteTaskDetails();
     }
-
 
     public void Handle_OnBack()
     {
@@ -56,8 +55,18 @@ public class TaskEditorPanel : SQ_Panel
     /*Writes the Task Details to the UI*/
     void WriteTaskDetails()
     {
-        //Name
+        //DEBUG : Task or Details null
+        if (task == null)
+        {
+            Debug.LogError("Task or task details are null in WriteTaskDetails!");
+            return;
+        }
+
+        /*Setting Display Information*/
+        //___Label___
         nameInput.text = task.taskDetails.name;
+
+
     }
     //Reads the Input Values to construct task detail structure
     Task.TaskDetails ReadInputDetails()

@@ -1,30 +1,37 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TaskList : MonoBehaviour, ISaveSystem
 {
-    [SerializeField] List<Task> tasks = new List<Task>();
+    [SerializeField] Task _focus;
+    public Task focusTask { get => _focus; private set => _focus = value; } //The List's selected task
 
-    [SerializeField] public Task focusTask { get; private set; } //The List's selected task
+
+    [SerializeField] List<Task> tasks = new List<Task>();
 
     public delegate Task TaskAddCall(Task task);
     public TaskAddCall OnTaskAdded;
+    public UnityAction OnTaskRemoved;
 
 
     public Task AddTask(Task task)
     {
+        if (task == null) { Debug.LogError("Can not Add Null Task Value"); return null; }
+
         tasks.Add(task);
         OnTaskAdded?.Invoke(task);
 
         return task;
     }
-
-
     public Task AddTask()
     {
-        GameObject taskObj = Instantiate(new GameObject("Task"), GameManager.instance.GetComponent<TaskList>()?.transform);
-        Task task = taskObj?.AddComponent<Task>();
+        GameObject taskObj = Instantiate(new GameObject("TaskDebug"), GameManager.instance.GetComponent<TaskList>().transform);
+        Task task;
+        if (taskObj != null) {
+            task = taskObj.AddComponent<Task>();
+        } else { task = null; }
+        
 
         return AddTask(task);
     }
@@ -37,9 +44,15 @@ public class TaskList : MonoBehaviour, ISaveSystem
         if (task == focusTask) { focusTask = null; }        //Empty Focus if it's being removed
         if (tasks.Contains(task)) { tasks.Remove(task); }   //Remove the task from the list
         if (task.gameObject) { Destroy(task.gameObject); }  //Destroy game object if it exists
+
+        OnTaskRemoved?.Invoke();
     }
 
-    public void OnTaskSelected(Task selected)
+    public void Set_Focus(Task selected)
     { focusTask = selected; }
+
+    public Task[] Get_List() { 
+        return tasks.ToArray();
+    }
 
 }

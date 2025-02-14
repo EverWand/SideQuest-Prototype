@@ -1640,7 +1640,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3374553253495473016}
         m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
-        m_MethodName: Handle_AddTask
+        m_MethodName: AddTask_Pressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2379,7 +2379,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3374553253495473016}
         m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
-        m_MethodName: Handle_EditTask
+        m_MethodName: OpenEditor_Pressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2873,6 +2873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelPrefab: {fileID: 9185559228551195026}
+  taskListUI: {fileID: 8884964743073540987}
+  SelectedTaskLabel: {fileID: 8807572383099191763}
 --- !u!1001 &2023459410556003522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3269,7 +3271,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7833986176158294577, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3279,3 +3282,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2215849685282005782, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
   m_PrefabInstance: {fileID: 2023459410556003522}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8884964743073540987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7447117354696708025, guid: 06defbd41073cb8449d5ad6b13c2caa3, type: 3}
+  m_PrefabInstance: {fileID: 2023459410556003522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ae3d76e34e084fb62651e06c1cafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

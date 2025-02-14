@@ -6,8 +6,14 @@ public class PanelSwitcher : MonoBehaviour
 {
     [SerializeField] Transform switcherRoot;
     [SerializeField] SQ_Panel rootPanel;
-    public SQ_Panel currPanel { get; private set; } //Tracks the current Panel the Switcher is on
-    public SQ_Panel prevPanel { get; private set; } //Tracks what the was the previous Panel focused on by the Switcher
+
+
+    //[THIS STUFF IS JUST FOR THE INSPECTOR FOR DEBUGGING]
+    [SerializeField] private SQ_Panel _currPanel;
+    [SerializeField] private SQ_Panel _prevPanel;
+
+    public SQ_Panel currPanel { get => _currPanel; private set => _currPanel = value; }
+    public SQ_Panel prevPanel { get => _prevPanel; private set => _prevPanel = value; }
 
     [SerializeField] List<SQ_Panel> panelList = new List<SQ_Panel>();
 
@@ -50,26 +56,42 @@ public class PanelSwitcher : MonoBehaviour
     SQ_Panel SwitchPanel(SQ_Panel panel)
     {
         if (panel == null) { return null; }
-        prevPanel = currPanel; //Make the Current panel now the previous panel
-        
+
         if (prevPanel != null)
         {
             prevPanel.OnRemoved?.Invoke();
         }
-        //Create the New Panel
+
+        prevPanel = currPanel; // Track the previous panel
+
+        if (prevPanel != null)
+        {
+            prevPanel.gameObject.SetActive(false); // Deactivate previous panel
+            prevPanel.OnClose?.Invoke();
+        }
+
+        // If the panel does not exist, create a new one
         currPanel = CreatePanel(panel.panelPrefab);
-        currPanel.OnCreated?.Invoke();
+        currPanel.gameObject.SetActive(true);
+        currPanel.OnOpen?.Invoke();
 
         return currPanel;
     }
     public void FocusRootPanel()
     {
-        if (!rootPanel)
+        //CHECK: Root is not set
+        if (rootPanel == null)
         {
-            rootPanel = CreatePanel(rootPanel.panelPrefab);
+            //Make the first panel in list of panels the Root otherwise continue as null
+            rootPanel = panelList[0] != null ? panelList[0] : null;
         }
 
+        //GAURD: No Root Available
+        if (rootPanel == null) { return; }
+
+        //Found Root, Switch to that Panel
         SwitchPanel(rootPanel);
+
     }
 
     SQ_Panel CreatePanel(GameObject panelObj)
@@ -79,9 +101,24 @@ public class PanelSwitcher : MonoBehaviour
         return newPanel;
     }
 
-    public SQ_Panel GoBack() {
+    public SQ_Panel GoBack()
+    {
+        if (prevPanel == null) { return null; }
+        
         OnBack?.Invoke();
-        return SwitchPanel(prevPanel);
+        
+        SQ_Panel tempPanel = prevPanel;
+        prevPanel = currPanel;
+        currPanel = tempPanel;
+
+        prevPanel.gameObject.SetActive(false);
+        prevPanel.OnClose?.Invoke();
+        
+        currPanel.gameObject.SetActive(true);
+        currPanel.OnOpen?.Invoke();
+
+        return currPanel;
+
     }
 
     //Ensures that all Panels have been Disabled

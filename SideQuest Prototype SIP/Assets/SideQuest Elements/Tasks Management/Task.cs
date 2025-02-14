@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Task: MonoBehaviour
+public class Task : MonoBehaviour
 {
     [System.Serializable]
     public struct TaskDetails
@@ -12,8 +13,8 @@ public class Task: MonoBehaviour
         public float currTime;
         public bool isComplete;
 
-        public TaskDetails(string name)
-        {
+       public TaskDetails(string name)
+       {
             this.name = name;
             this.targetTime = 0;
             this.currTime = 0;
@@ -21,15 +22,18 @@ public class Task: MonoBehaviour
         }
     }
 
-    [SerializeField] public TaskDetails taskDetails { get; private set; }
+    [SerializeField] TaskDetails _details;
 
-    UnityAction OnDetailsUpdate;
+    [SerializeField] public TaskDetails taskDetails { get => _details; private set => _details = value; }
+
+    public delegate void OnDetailUpdateCall(Task task);
+    public OnDetailUpdateCall OnDetailsUpdate;
 
 
     public void SetTaskDetails(TaskDetails details)
     {
         taskDetails = details;
-        OnDetailsUpdate.Invoke();
+        OnDetailsUpdate?.Invoke(this);
     }
 }
 

@@ -7,20 +7,54 @@ public class TaskListUI : MonoBehaviour
 
     [SerializeField] TaskList taskList;
 
+    public delegate void TaskClickedCall(Task task);
+    public TaskClickedCall OnTaskClicked;
+
+
+
     private void Awake()
     {
-        taskList = GameManager.instance.GetComponent<TaskList>();
+        if (taskList == null)
+        {
+            taskList = GameManager.instance.GetComponent<TaskList>();
+        }
 
-        taskList.OnTaskAdded += CreateTask;
+        DrawTasks();
     }
 
-    Task CreateTask(Task task)
+    public void DrawTasks()
     {
-        GameObject newTask = Instantiate(TaskPrefab, Vector3.zero, Quaternion.identity, TaskListRoot);
-        //Debug.Log("Created Task");
-        TaskUI taskUI = newTask.GetComponent<TaskUI>();
-        taskUI.task = task;
+        //Debug.Log("Drawing " + (GameManager.instance.GetComponent<TaskList>().Get_List().Length) + " Tasks");
+        
+        ClearDisplay();
 
-        return taskUI.task;
+        foreach(Task task in taskList.Get_List())
+        {
+            CreateTask(task);
+        }
+    }
+
+    void ClearDisplay() {
+        foreach (TaskUI task in TaskListRoot.GetComponentsInChildren<TaskUI>()) {
+            Destroy(task.gameObject);
+        }
+    }
+
+    void CreateTask(Task task)
+    {
+        if (task == null) return;
+
+        GameObject newTask = Instantiate(TaskPrefab, Vector3.zero, Quaternion.identity, TaskListRoot);
+        TaskUI taskUI = newTask.GetComponent<TaskUI>();
+
+        taskUI.BindTask(task);
+
+        taskUI.DisplayInfoUpdated?.Invoke();
+        taskUI.OnClicked += Handle_TaskClicked;
+    }
+
+    public void Handle_TaskClicked(Task task)
+    {
+        OnTaskClicked.Invoke(task);
     }
 }

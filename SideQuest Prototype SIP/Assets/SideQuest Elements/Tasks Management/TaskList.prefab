@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 2215849685282005782}
   - component: {fileID: 1867159115262705960}
   - component: {fileID: 17179905148020618}
-  - component: {fileID: 7833986176158294577}
+  - component: {fileID: 7447117354696708025}
   m_Layer: 5
   m_Name: TaskList
   m_TagString: Untagged
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7833986176158294577
+--- !u!114 &7447117354696708025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,12 +473,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4110340797867745375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33db5692a1bd85849930ddcaff40f87c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c8ae3d76e34e084fb62651e06c1cafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TaskPrefab: {fileID: 1423418443421068445, guid: f888c874f3ebf754faaeb36aa12fb248, type: 3}
   TaskListRoot: {fileID: 11834686509922135}
-  tasks: []
+  taskList: {fileID: 0}
 --- !u!1 &5208459190374963036
 GameObject:
   m_ObjectHideFlags: 0
