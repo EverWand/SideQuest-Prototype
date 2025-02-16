@@ -274,8 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093f65138384b5040bc965e9d65a4016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  task: {fileID: 0}
   labelTxt: {fileID: 4251980188032441633}
+  EstTimeTxt: {fileID: 7874911051773912731}
+  CurrTimeTxt: {fileID: 3604588913372276963}
 --- !u!1 &2222936391870563591
 GameObject:
   m_ObjectHideFlags: 0

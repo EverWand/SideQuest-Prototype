@@ -48,9 +48,9 @@ public class TaskListUI : MonoBehaviour
         TaskUI taskUI = newTask.GetComponent<TaskUI>();
 
         taskUI.BindTask(task);
-
-        taskUI.DisplayInfoUpdated?.Invoke();
         taskUI.OnClicked += Handle_TaskClicked;
+
+        task.SetTaskDetails(task.taskDetails);
     }
 
     public void Handle_TaskClicked(Task task)

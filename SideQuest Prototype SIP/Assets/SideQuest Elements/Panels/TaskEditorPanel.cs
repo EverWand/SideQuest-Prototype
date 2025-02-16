@@ -1,6 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using static Task;
 
 public class TaskEditorPanel : SQ_Panel
 {
@@ -13,17 +14,19 @@ public class TaskEditorPanel : SQ_Panel
     //Label
     [SerializeField] TMP_InputField nameInput;
     //Time
-    [SerializeField] InputField hours;
-    [SerializeField] InputField minutes;
+    [SerializeField] TMP_InputField hours;
+    [SerializeField] TMP_InputField minutes;
     //Date
-    [SerializeField] InputField year;
-    [SerializeField] InputField month;
-    [SerializeField] InputField day;
+    [SerializeField] TMP_InputField year;
+    [SerializeField] TMP_InputField month;
+    [SerializeField] TMP_InputField day;
 
     public void SetupEditor(EditorMode modeType, Task editTask)
     {
+        if (editTask == null) { GameManager.instance.GetComponent<PanelSwitcher>()?.GoBack(); return; }
         mode = modeType;
         task = editTask;
+        editorDetails = task.taskDetails;
 
         WriteTaskDetails();
     }
@@ -64,17 +67,26 @@ public class TaskEditorPanel : SQ_Panel
 
         /*Setting Display Information*/
         //___Label___
-        nameInput.text = task.taskDetails.name;
-
-
+        nameInput.text = editorDetails.name;
+        //___Hours
+        hours.text = task.GetTimeFormatted(editorDetails.targetTime).hours.ToString();
+        //__Minutes
+        minutes.text = task.GetTimeFormatted(editorDetails.targetTime).minutes.ToString();
     }
     //Reads the Input Values to construct task detail structure
-    Task.TaskDetails ReadInputDetails()
+    TaskDetails ReadInputDetails()
     {
         //Name
         editorDetails.name = nameInput.text;
+        //Parse the Time Text input to set the task's target time value
+        editorDetails.targetTime = TimeToSeconds(Int32.Parse(hours.text), Int32.Parse(minutes.text));
 
 
         return editorDetails;
+    }
+
+    float TimeToSeconds(int hrs, int mins)
+    {
+        return ((hrs * 60) + mins) * 60;
     }
 }

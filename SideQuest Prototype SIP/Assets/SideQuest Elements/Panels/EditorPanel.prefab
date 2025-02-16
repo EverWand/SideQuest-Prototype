@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 6106043186540243114}
   - component: {fileID: 7344171306749119627}
   m_Layer: 5
-  m_Name: HrIn
+  m_Name: Hr_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 5479855610415693061}
   - component: {fileID: 5087298103938574406}
   m_Layer: 5
-  m_Name: HrIn
+  m_Name: Yr_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,11 +949,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelPrefab: {fileID: 937468284709189525}
   nameInput: {fileID: 7887996595200282653}
-  hours: {fileID: 0}
-  minutes: {fileID: 0}
-  year: {fileID: 0}
-  month: {fileID: 0}
-  day: {fileID: 0}
+  hours: {fileID: 7344171306749119627}
+  minutes: {fileID: 894503825676456017}
+  year: {fileID: 5087298103938574406}
+  month: {fileID: 8737929392247363567}
+  day: {fileID: 8900107462646717252}
 --- !u!1 &981682493684413337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,7 +2378,7 @@ GameObject:
   - component: {fileID: 947795999647472025}
   - component: {fileID: 8900107462646717252}
   m_Layer: 5
-  m_Name: MinIn
+  m_Name: Da_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2739,7 +2739,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.65
+  m_fontSize: 17.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4005,8 +4005,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 341.25, y: -21.850006}
-  m_SizeDelta: {x: 67.5, y: 43.700012}
+  m_AnchoredPosition: {x: 312, y: -21.850006}
+  m_SizeDelta: {x: 48, y: 43.700012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2702654538191769569
 CanvasRenderer:
@@ -4429,7 +4429,7 @@ GameObject:
   - component: {fileID: 4851987748466837322}
   - component: {fileID: 894503825676456017}
   m_Layer: 5
-  m_Name: MinIn
+  m_Name: Min_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4820,7 +4820,7 @@ GameObject:
   - component: {fileID: 2103304425934430239}
   - component: {fileID: 8737929392247363567}
   m_Layer: 5
-  m_Name: MinIn
+  m_Name: Mo_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.5
+  m_fontSize: 18.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5429,8 +5429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 33.75, y: -21.850006}
-  m_SizeDelta: {x: 67.5, y: 43.700012}
+  m_AnchoredPosition: {x: 24, y: -21.850006}
+  m_SizeDelta: {x: 48, y: 43.700012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1976582887305656472
 CanvasRenderer:
@@ -5995,7 +5995,7 @@ GameObject:
   - component: {fileID: 1329317688204420474}
   - component: {fileID: 2203787841273893625}
   m_Layer: 5
-  m_Name: hr_Box
+  m_Name: Hr_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

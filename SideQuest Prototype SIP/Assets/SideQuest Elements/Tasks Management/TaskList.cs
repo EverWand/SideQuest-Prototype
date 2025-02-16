@@ -26,12 +26,13 @@ public class TaskList : MonoBehaviour, ISaveSystem
     }
     public Task AddTask()
     {
-        GameObject taskObj = Instantiate(new GameObject("TaskDebug"), GameManager.instance.GetComponent<TaskList>().transform);
+        GameObject taskObj = Instantiate(new GameObject("Task"), GameManager.instance.GetComponent<TaskList>().transform);
         Task task;
         if (taskObj != null) {
             task = taskObj.AddComponent<Task>();
         } else { task = null; }
-        
+
+        task.SetTaskDetails("New Task", 0, 0, 0f);
 
         return AddTask(task);
     }
