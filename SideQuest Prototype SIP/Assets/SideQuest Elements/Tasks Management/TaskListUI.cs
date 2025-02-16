@@ -25,17 +25,19 @@ public class TaskListUI : MonoBehaviour
     public void DrawTasks()
     {
         //Debug.Log("Drawing " + (GameManager.instance.GetComponent<TaskList>().Get_List().Length) + " Tasks");
-        
+
         ClearDisplay();
 
-        foreach(Task task in taskList.Get_List())
+        foreach (Task task in taskList.Get_List())
         {
             CreateTask(task);
         }
     }
 
-    void ClearDisplay() {
-        foreach (TaskUI task in TaskListRoot.GetComponentsInChildren<TaskUI>()) {
+    void ClearDisplay()
+    {
+        foreach (TaskUI task in TaskListRoot.GetComponentsInChildren<TaskUI>())
+        {
             Destroy(task.gameObject);
         }
     }

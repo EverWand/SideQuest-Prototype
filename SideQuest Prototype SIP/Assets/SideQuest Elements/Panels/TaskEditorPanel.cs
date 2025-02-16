@@ -1,7 +1,9 @@
+using CustomUtil; //Customized Utility namespace | using for Time Conversions
 using System;
 using TMPro;
 using UnityEngine;
 using static Task;
+
 
 public class TaskEditorPanel : SQ_Panel
 {
@@ -69,9 +71,9 @@ public class TaskEditorPanel : SQ_Panel
         //___Label___
         nameInput.text = editorDetails.name;
         //___Hours
-        hours.text = task.GetTimeFormatted(editorDetails.targetTime).hours.ToString();
+        hours.text = TimeConverter.GetTimeFormatted(editorDetails.targetTime).hours.ToString();
         //__Minutes
-        minutes.text = task.GetTimeFormatted(editorDetails.targetTime).minutes.ToString();
+        minutes.text = TimeConverter.GetTimeFormatted(editorDetails.targetTime).minutes.ToString();
     }
     //Reads the Input Values to construct task detail structure
     TaskDetails ReadInputDetails()
@@ -79,14 +81,10 @@ public class TaskEditorPanel : SQ_Panel
         //Name
         editorDetails.name = nameInput.text;
         //Parse the Time Text input to set the task's target time value
-        editorDetails.targetTime = TimeToSeconds(Int32.Parse(hours.text), Int32.Parse(minutes.text));
+        editorDetails.targetTime = TimeConverter.TimeToSeconds(Int32.Parse(hours.text), Int32.Parse(minutes.text));
 
 
         return editorDetails;
     }
 
-    float TimeToSeconds(int hrs, int mins)
-    {
-        return ((hrs * 60) + mins) * 60;
-    }
 }

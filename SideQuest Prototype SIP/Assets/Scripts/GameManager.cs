@@ -5,9 +5,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] PanelSwitcher panelSwitcher;
+    public HUD hud;
 
-
-    private void Awake()
+    void Awake()
     {
         if (instance == null)
         {
@@ -23,8 +23,12 @@ public class GameManager : MonoBehaviour
         if (panelSwitcher == null) { panelSwitcher = GetComponent<PanelSwitcher>(); }
     }
 
-    private void Start()
+    void Start()
     {
         panelSwitcher.FocusRootPanel();
+    }
+
+    void Handle_HPOnDeath() { 
+        
     }
 }

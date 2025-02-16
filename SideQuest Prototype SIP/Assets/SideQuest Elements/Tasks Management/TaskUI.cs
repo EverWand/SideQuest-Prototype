@@ -1,5 +1,7 @@
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
+using CustomUtil;
 
 public class TaskUI : MonoBehaviour
 {
@@ -38,13 +40,13 @@ public class TaskUI : MonoBehaviour
         //Remove the Update Calls for the previously bound task
         if (task != null) { 
             task.OnDetailsUpdate -= FullDisplayUpdate; 
-            task.OnTimerTick -= UpdateCurrentTimeDisplay;
+            task.OnMinuteReached -= UpdateCurrentTimeDisplay;
         }
 
         task = newTask; //Link to the new task
         
         task.OnDetailsUpdate += FullDisplayUpdate; //Subscribe to the detail update to also update the UI
-        task.OnTimerTick += UpdateCurrentTimeDisplay;
+        task.OnMinuteReached += UpdateCurrentTimeDisplay;
     }
 
 
@@ -56,9 +58,9 @@ public class TaskUI : MonoBehaviour
         //Update Label
         SetLabel(task.taskDetails.name);
         //Update Current Time Display
-        SetTimeDisplay(CurrTimeTxt, task.GetTimeFormatted(task.taskDetails.elapsedTime));
+        SetTimeDisplay(CurrTimeTxt, TimeConverter.GetTimeFormatted(task.taskDetails.elapsedTime));
         //Update Target Time Display
-        SetTimeDisplay(EstTimeTxt, task.GetTimeFormatted(task.taskDetails.targetTime));
+        SetTimeDisplay(EstTimeTxt, TimeConverter.GetTimeFormatted(task.taskDetails.targetTime));
     }
 
 
@@ -78,6 +80,6 @@ public class TaskUI : MonoBehaviour
     }
 
     void UpdateCurrentTimeDisplay() {
-        SetTimeDisplay(CurrTimeTxt, task.GetTimeFormatted(task.taskDetails.elapsedTime));
+        SetTimeDisplay(CurrTimeTxt, TimeConverter.GetTimeFormatted(task.taskDetails.elapsedTime));
     }
 }

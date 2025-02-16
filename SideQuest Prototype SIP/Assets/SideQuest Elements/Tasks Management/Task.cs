@@ -1,5 +1,6 @@
+using CustomUtil;
 using System;
-using System.Threading;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,17 +26,13 @@ public class Task : MonoBehaviour
     [SerializeField] TaskDetails details;
     public TaskDetails taskDetails { get => details; private set => details = value; }
 
-    private Thread timerThread;
-    private bool isPaused = false;
-    private bool stopThread = false;
+    Coroutine timerRoutine;
+    bool isPaused = false;
 
     public event Action<Task> OnDetailsUpdate;
     public UnityAction OnTimerTick;
+    public UnityAction OnMinuteReached;
 
-    private void Awake()
-    {
-
-    }
 
     public void SetTaskDetails(string taskName, int targetHours, int targetMinutes, float currElapsedTime)
     {
@@ -52,16 +49,7 @@ public class Task : MonoBehaviour
     //=====| TIMER TRACKER |=====
     public void StartTimer()
     {
-        if (timerThread != null && timerThread.IsAlive)
-        {
-            stopThread = true;
-            timerThread.Join();
-        }
-
-        isPaused = false;
-        stopThread = false;
-        timerThread = new Thread(TickTimer);
-        timerThread.Start();
+        timerRoutine = StartCoroutine(TickTimer());
     }
 
     public void PauseTimer()
@@ -76,36 +64,52 @@ public class Task : MonoBehaviour
 
     public void StopTimer()
     {
-        if (timerThread != null && timerThread.IsAlive)
-        {
-            stopThread = true;
-            timerThread.Join();
-        }
+        StopCoroutine(timerRoutine);
     }
 
-    private void TickTimer()
+    IEnumerator TickTimer()
     {
-        while (!details.isComplete && !stopThread)
+        while (!details.isComplete)
         {
             if (!isPaused)
             {
                 details.elapsedTime += 1f;
+                if (details.elapsedTime % 60 == 0)
+                {
+                    OnMinuteReached?.Invoke();
+                }
+
+                yield return new WaitForSeconds(1);
             }
-
-
-            Thread.Sleep(1000);
         }
     }
 
     //====| DETAIL GETTERS |=====
-    public int GetTimeDifference()
-    {
-        return Mathf.FloorToInt(Mathf.Abs(details.targetTime - details.elapsedTime));
-    }
 
-    public (int hours, int minutes) GetTimeFormatted(float baseTime)
+    /*Calculates Full Reward of the Task*/
+    public float Get_Reward(float seconds)
     {
-        int totalSeconds = Mathf.FloorToInt(baseTime);
-        return (totalSeconds / 3600, (totalSeconds % 3600) / 60);
+
+        (float hr, float min) = TimeConverter.GetTimeFormatted(taskDetails.targetTime);
+        //Base Reward by the length of the Task
+        float reward = (hr + (min / 60));
+        print($"Base Reward: {reward}");
+        //Create a modifier for how close the time difference is to the target time
+        // Lambda Expression for calculating the modifier of the reward
+        Func<float> mod = () =>
+        {
+            //Get the difference between the target time and the current time
+            float timeDifference = TimeConverter.GetTimeDifference(seconds, taskDetails.targetTime);
+
+            Debug.Log($"Time Difference: {timeDifference}");
+
+            //Return the modifier based on the difference
+            return Mathf.Clamp01(1 - (timeDifference / taskDetails.targetTime));
+        };
+
+        //BASE * MOD = Reward
+        reward = reward * (1 + mod());
+        Debug.Log($"Reward: {reward}");
+        return reward; //Return the Reward
     }
 }
