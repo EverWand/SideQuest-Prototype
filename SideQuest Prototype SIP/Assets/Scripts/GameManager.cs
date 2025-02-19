@@ -27,8 +27,4 @@ public class GameManager : MonoBehaviour
     {
         panelSwitcher.FocusRootPanel();
     }
-
-    void Handle_HPOnDeath() { 
-        
-    }
 }

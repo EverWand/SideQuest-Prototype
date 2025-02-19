@@ -20,4 +20,11 @@ namespace CustomUtil
             return (totalSeconds / 3600, (totalSeconds % 3600) / 60);
         }
     }
+
+    public interface ISaveData
+    {
+        void Save(ref AppData data);
+
+        void Load(AppData data);
+    }
 }

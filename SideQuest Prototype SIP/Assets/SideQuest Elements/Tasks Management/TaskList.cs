@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using CustomUtil;
 
-public class TaskList : MonoBehaviour, ISaveSystem
+public class TaskList : MonoBehaviour, ISaveData
 {
     [SerializeField] Task _focus;
     public Task focusTask { get => _focus; private set => _focus = value; } //The List's selected task
@@ -13,6 +14,7 @@ public class TaskList : MonoBehaviour, ISaveSystem
     public delegate Task TaskAddCall(Task task);
     public TaskAddCall OnTaskAdded;
     public UnityAction OnTaskRemoved;
+    public UnityAction OnTasksUpdated;
 
 
     public Task AddTask(Task task)
@@ -21,6 +23,7 @@ public class TaskList : MonoBehaviour, ISaveSystem
 
         tasks.Add(task);
         OnTaskAdded?.Invoke(task);
+        OnTasksUpdated?.Invoke();
 
         return task;
     }
@@ -47,6 +50,7 @@ public class TaskList : MonoBehaviour, ISaveSystem
         if (task.gameObject) { Destroy(task.gameObject); }  //Destroy game object if it exists
 
         OnTaskRemoved?.Invoke();
+        OnTasksUpdated?.Invoke();
     }
 
     public void Set_Focus(Task selected)
@@ -54,6 +58,17 @@ public class TaskList : MonoBehaviour, ISaveSystem
 
     public Task[] Get_List() { 
         return tasks.ToArray();
+    }
+
+    /*=====| SAVE DATA |=====*/
+    public void Save(ref AppData data)
+    {
+        data.taskList = this.tasks;
+
+    }
+    public void Load(AppData data)
+    {
+        this.tasks = data.taskList;
     }
 
 }

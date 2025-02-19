@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class Task : MonoBehaviour
 {
     [System.Serializable]
@@ -112,4 +113,9 @@ public class Task : MonoBehaviour
         Debug.Log($"Reward: {reward}");
         return reward; //Return the Reward
     }
+
+    public string GetJsonPrint()
+    {
+        return JsonUtility.ToJson(taskDetails,true);
+    }   
 }
