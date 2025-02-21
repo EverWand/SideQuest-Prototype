@@ -26,7 +26,7 @@ public class HealthSystem : MonoBehaviour
         OnHealthChange.Invoke();
     }
 
-    public float get_healthValue() { return currHealth; }
+    public float Get_healthValue() { return currHealth; }
 
     public void TakeDamage(float damageAmount)
     {

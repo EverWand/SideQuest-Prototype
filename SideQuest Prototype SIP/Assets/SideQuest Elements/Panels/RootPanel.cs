@@ -1,4 +1,3 @@
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
@@ -57,14 +56,13 @@ public class RootPanel : SQ_Panel
 
         editor.SetupEditor(mode, task); //Open Editor in Task Creation Mode
     }
-    
+
     /* Updates the Selected Task Display */
     void UpdateSelectedTaskDisplay(Task task)
     {
-        taskList.Set_Focus(task);
-        
-        SelectedTaskLabel.text = task?.taskDetails.name;
-        
-        taskList.focusTask.OnDetailsUpdate += UpdateSelectedTaskDisplay;
+        taskList.Set_Focus(task);   // Set the focus task to the selected task
+
+        SelectedTaskLabel.text = taskList.focusTask?.taskDetails.name; //Update the Selected Task Label
+        taskList.focusTask.OnDetailsUpdate += UpdateSelectedTaskDisplay; //Subscribe to the task's details update event
     }
 }

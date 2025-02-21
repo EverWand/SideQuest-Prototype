@@ -21,16 +21,14 @@ public class TaskListUI : MonoBehaviour
 
         DrawTasks();
     }
-
+    /* Draws all the saved tasks as Task Displays to the Task List Display*/
     public void DrawTasks()
     {
-        //Debug.Log("Drawing " + (GameManager.instance.GetComponent<TaskList>().Get_List().Length) + " Tasks");
-
-        ClearDisplay();
-
+        ClearDisplay(); //Clear the current display
+        //LOOP: go through every task that's inside of the task list
         foreach (Task task in taskList.Get_List())
         {
-            CreateTask(task);
+            CreateTask(task); //Create a task UI element based on given task
         }
     }
 

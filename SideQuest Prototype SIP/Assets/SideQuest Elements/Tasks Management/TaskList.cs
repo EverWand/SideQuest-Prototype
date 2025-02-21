@@ -5,16 +5,16 @@ using CustomUtil;
 
 public class TaskList : MonoBehaviour, ISaveData
 {
-    [SerializeField] Task _focus;
+    [SerializeField] Task _focus; //Serialize Field input for setting/seeing the focus task in editor
     public Task focusTask { get => _focus; private set => _focus = value; } //The List's selected task
 
+    [SerializeField] List<Task> tasks = new List<Task>(); //List of Tasks
 
-    [SerializeField] List<Task> tasks = new List<Task>();
-
-    public delegate Task TaskAddCall(Task task);
-    public TaskAddCall OnTaskAdded;
-    public UnityAction OnTaskRemoved;
-    public UnityAction OnTasksUpdated;
+    /*=====| EVENTS |=====*/
+    public delegate Task TaskAddCall(Task task);    //Delegate for Task Added Event
+    public TaskAddCall OnTaskAdded;                 //Task Added Event
+    public UnityAction OnTaskRemoved;               //Task Removed Event
+    public UnityAction OnTasksUpdated;              //Tasks Updated Event
 
 
     public Task AddTask(Task task)
@@ -53,12 +53,16 @@ public class TaskList : MonoBehaviour, ISaveData
         OnTasksUpdated?.Invoke();
     }
 
+
+    /* Setter for the Focused Task */
     public void Set_Focus(Task selected)
     { focusTask = selected; }
 
+    /* Getter for the Task List as an array */
     public Task[] Get_List() { 
         return tasks.ToArray();
     }
+
 
     /*=====| SAVE DATA |=====*/
     public void Save(ref AppData data)
