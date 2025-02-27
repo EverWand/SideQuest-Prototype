@@ -64,13 +64,13 @@ public class TaskList : MonoBehaviour, ISaveData
     }
 
 
-    /*=====| SAVE DATA |=====*/
-    public void Save(ref AppData data)
+    /*=====| SAVE DATA INTERFACE |=====*/
+    public void SaveData(ref AppData data)
     {
         data.taskList = this.tasks;
 
     }
-    public void Load(AppData data)
+    public void LoadData(AppData data)
     {
         this.tasks = data.taskList;
     }

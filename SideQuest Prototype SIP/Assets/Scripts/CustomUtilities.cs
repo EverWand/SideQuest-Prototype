@@ -23,8 +23,9 @@ namespace CustomUtil
 
     public interface ISaveData
     {
-        void Save(ref AppData data);
-
-        void Load(AppData data);
+        // Save the data to the app data
+        void SaveData(ref AppData data);
+        // Load the data from the app data
+        void LoadData(AppData data);
     }
 }

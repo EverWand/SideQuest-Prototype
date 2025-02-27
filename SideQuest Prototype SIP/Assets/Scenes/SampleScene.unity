@@ -173,6 +173,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focus: {fileID: 0}
   tasks: []
+--- !u!114 &215183404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215183397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a558a49fc605c694894b502454af622e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: SQ_Data.json
 --- !u!1001 &274052125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,6 +256,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
       insertIndex: -1
       addedObject: {fileID: 215183403}
+    - targetCorrespondingSourceObject: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 215183404}
   m_SourcePrefab: {fileID: 100100000, guid: 2ceb554b547804540b6794d924cda517, type: 3}
 --- !u!1 &519420028
 GameObject:
