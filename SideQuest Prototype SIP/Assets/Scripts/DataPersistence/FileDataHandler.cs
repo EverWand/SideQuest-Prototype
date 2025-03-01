@@ -23,7 +23,10 @@ public class FileDataHandler
         AppData loadedData = null;    
 
         //GAURD: Check if the file exists
-        if (!File.Exists(fullPath)) { Debug.LogError("Cannot find file path when loading Application Data"); return null;  }
+        if (!File.Exists(fullPath)) { 
+            Debug.LogError("Cannot find file path when loading Application Data"); 
+            return null;  
+        }
         
         string dataToLoad = ""; //For tracking file file data
 

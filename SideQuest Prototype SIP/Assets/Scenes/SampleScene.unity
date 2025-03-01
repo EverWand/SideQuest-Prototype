@@ -156,9 +156,7 @@ MonoBehaviour:
   rootPanel: {fileID: 3374553253495473016, guid: 04447d74314074d4e9928a41ffc28c10, type: 3}
   _currPanel: {fileID: 0}
   _prevPanel: {fileID: 0}
-  panelList:
-  - {fileID: 3374553253495473016, guid: 04447d74314074d4e9928a41ffc28c10, type: 3}
-  - {fileID: -5978299539374242290, guid: 50f41f3b73641f049935ae063e24f1b3, type: 3}
+  PanelTypes: []
 --- !u!114 &215183403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +681,10 @@ PrefabInstance:
     - target: {fileID: 1195321235491763464, guid: be87c32deced2cf48a6ad9e7eeb59cb0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500587023230852221, guid: be87c32deced2cf48a6ad9e7eeb59cb0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.65979
       objectReference: {fileID: 0}
     - target: {fileID: 2118599985466520508, guid: be87c32deced2cf48a6ad9e7eeb59cb0, type: 3}
       propertyPath: m_AnchorMax.y

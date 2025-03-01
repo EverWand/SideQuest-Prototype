@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,15 +14,20 @@ public class PanelSwitcher : MonoBehaviour
     public SQ_Panel currPanel { get => _currPanel; private set => _currPanel = value; }
     public SQ_Panel prevPanel { get => _prevPanel; private set => _prevPanel = value; }
 
-    [SerializeField] List<SQ_Panel> panelList = new List<SQ_Panel>();
+    [SerializeField] SQ_Panel[] PanelTypes;
 
     public UnityAction OnBack;
 
     private void Start()
     {
+        //Fill PanelType List [via Resource Folder]
+        PanelTypes = Resources.LoadAll<SQ_Panel>("UI_Panels");
+
         if (rootPanel == null)
         {
-            rootPanel = panelList[0]; //Make the Root the beginning panel of the list
+            //set the root panel [via Resorce Folder]
+            rootPanel = Resources.Load<SQ_Panel>("UI_Panels/RootPanel");
+
         }
     }
 
@@ -31,7 +35,7 @@ public class PanelSwitcher : MonoBehaviour
     public SQ_Panel SwitchPanel<T>() where T : SQ_Panel
     {
         //Go through Each Panel
-        foreach (SQ_Panel panel in panelList)
+        foreach (SQ_Panel panel in PanelTypes)
         {
             //Check if the panel is the same type as requested panel Type
             if (panel is T)
@@ -44,13 +48,13 @@ public class PanelSwitcher : MonoBehaviour
 
     public void SwitchPanel(int index)
     {
-        if (panelList.Count - 1 > index || index < 0)
+        if (PanelTypes.Length - 1 > index || index < 0)
         {
             Debug.LogError("Index Out of Range of " + gameObject.name + " Panel List.");
             return;
         }
 
-        SwitchPanel(panelList[index]);
+        SwitchPanel(PanelTypes[index]);
     }
 
     SQ_Panel SwitchPanel(SQ_Panel panel)
@@ -83,7 +87,7 @@ public class PanelSwitcher : MonoBehaviour
         if (rootPanel == null)
         {
             //Make the first panel in list of panels the Root otherwise continue as null
-            rootPanel = panelList[0] != null ? panelList[0] : null;
+            rootPanel = PanelTypes[0] != null ? PanelTypes[0] : null;
         }
 
         //GAURD: No Root Available
@@ -104,16 +108,16 @@ public class PanelSwitcher : MonoBehaviour
     public SQ_Panel GoBack()
     {
         if (prevPanel == null) { return null; }
-        
+
         OnBack?.Invoke();
-        
+
         SQ_Panel tempPanel = prevPanel;
         prevPanel = currPanel;
         currPanel = tempPanel;
 
         prevPanel.gameObject.SetActive(false);
         prevPanel.OnClose?.Invoke();
-        
+
         currPanel.gameObject.SetActive(true);
         currPanel.OnOpen?.Invoke();
 
