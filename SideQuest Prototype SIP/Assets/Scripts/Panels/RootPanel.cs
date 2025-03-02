@@ -24,6 +24,7 @@ public class RootPanel : SQ_Panel
     {
         taskListUI.DrawTasks();
     }
+
     /* When the Add Button is pressed, Open the Editor Panel in Creation Mode */
     public void AddTask_Pressed()
     {

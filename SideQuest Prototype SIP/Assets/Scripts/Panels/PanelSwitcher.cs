@@ -45,7 +45,7 @@ public class PanelSwitcher : MonoBehaviour
         }
         return null;
     }
-
+    /*Switches to panel given the specific index of the panel types array*/
     public void SwitchPanel(int index)
     {
         if (PanelTypes.Length - 1 > index || index < 0)
@@ -56,7 +56,7 @@ public class PanelSwitcher : MonoBehaviour
 
         SwitchPanel(PanelTypes[index]);
     }
-
+    /*Switches to a specific panel reference*/
     SQ_Panel SwitchPanel(SQ_Panel panel)
     {
         if (panel == null) { return null; }
@@ -81,6 +81,7 @@ public class PanelSwitcher : MonoBehaviour
 
         return currPanel;
     }
+    
     public void FocusRootPanel()
     {
         //CHECK: Root is not set
@@ -125,12 +126,4 @@ public class PanelSwitcher : MonoBehaviour
 
     }
 
-    //Ensures that all Panels have been Disabled
-    void RemoveAllPanels()
-    {
-        foreach (SQ_Panel panel in switcherRoot.GetComponentsInChildren<SQ_Panel>())
-        {
-            panel.OnRemoved.Invoke();
-        }
-    }
 }

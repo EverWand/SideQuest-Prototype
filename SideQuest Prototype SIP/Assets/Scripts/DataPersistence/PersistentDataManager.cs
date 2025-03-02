@@ -77,11 +77,9 @@ public class PersistentDataManager : MonoBehaviour
         }
     }
 
-
-
     List<ISaveData> FindAllSaveDataObjects()
     {
-        //Get and Cast the objects to ISaveData
+        //Get and Cast the objects of ISaveData
         IEnumerable<ISaveData> saveDataInstances = FindObjectsByType(typeof(ISaveData), FindObjectsSortMode.None).OfType<ISaveData>();
 
         return new List<ISaveData>(saveDataInstances); // Return the list of ISaveData objects

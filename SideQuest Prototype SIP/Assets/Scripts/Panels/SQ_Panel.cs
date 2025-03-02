@@ -3,12 +3,13 @@ using UnityEngine.Events;
 
 public abstract class SQ_Panel : MonoBehaviour
 {
-    [SerializeField] public GameObject panelPrefab;
+    [SerializeField] public GameObject panelPrefab; //Prefab of the Panel
 
-    public UnityAction OnRemoved;
-    public UnityAction OnCreated;
-    public UnityAction OnOpen;
-    public UnityAction OnClose;
+    /*====| Events |=====*/
+    public UnityAction OnRemoved;   //When Panel is Being Removed
+    public UnityAction OnCreated;   //When Panel is Created
+    public UnityAction OnOpen;      //When Panel is Open
+    public UnityAction OnClose;     //When Panel is Closed
 
     private void Awake()
     {
@@ -37,7 +38,6 @@ public abstract class SQ_Panel : MonoBehaviour
         //Debug.Log("Removing " + name);
         Destroy(gameObject); //Destroy Self
     }
-
 
 
     protected virtual void Handle_OnOpen()
