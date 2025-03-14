@@ -184,6 +184,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: SQ_Data.json
+--- !u!114 &215183405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215183397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc6c8a73474ffb47a44ef7c6009babd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packs: []
+  collectedPrizes: []
 --- !u!1001 &274052125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,6 +268,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
       insertIndex: -1
       addedObject: {fileID: 215183403}
+    - targetCorrespondingSourceObject: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 215183405}
     - targetCorrespondingSourceObject: {fileID: 7518138175131769127, guid: 2ceb554b547804540b6794d924cda517, type: 3}
       insertIndex: -1
       addedObject: {fileID: 215183404}
