@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 4029199789252539225}
   - component: {fileID: 8680822097928281606}
   m_Layer: 5
-  m_Name: CalendarBtn
+  m_Name: CatalogBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,7 +678,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4029199789252539225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3374553253495473016}
+        m_TargetAssemblyTypeName: RootPanel, Assembly-CSharp
+        m_MethodName: OpenCatalog_Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2163703011015149036
 GameObject:
   m_ObjectHideFlags: 0

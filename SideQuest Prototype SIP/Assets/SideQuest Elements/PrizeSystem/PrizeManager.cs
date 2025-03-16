@@ -1,30 +1,41 @@
 using UnityEngine;
 using CustomUtil;
+using System;
+using System.Collections.Generic;
 
 public class PrizeManager : MonoBehaviour, ISaveData
 {
+    [SerializeField] List<PrizePack> packs;
     
-    [SerializeField] PrizePack[] packs;
-
+    
     [Header("Debug")]
-    
+
     [SerializeField] Prize[] collectedPrizes;
-    public int currency { get; private set; }
+    [SerializeField] public int currency { get; private set; }
+
+    
 
 
     public void AddCurrency(int amount)
     {
         currency += amount;
     }
+
+    public void OpenPack<T>() where T : PrizePack
+    {
+        PrizePack pack = Activator.CreateInstance<T>();
+        OpenPack(pack);
+    }
+
     public void OpenPack(PrizePack pack)
     {
         //GUARD: Insufficient currency for pack purchase
-        if (currency < pack.packCost) { return; }
+        if (currency < pack.Get_PackCost()) { return; }
 
         /*Add the prize to the collected prizes*/
-        Prize prize = pack.PullPrize();
+        Prize prize = pack.RollPrize();
         /*Remove the cost of the pack from the currency*/
-        currency -= pack.packCost;
+        currency -= pack.Get_PackCost();
     }
 
     /*=====| SAVE DATA |=====*/

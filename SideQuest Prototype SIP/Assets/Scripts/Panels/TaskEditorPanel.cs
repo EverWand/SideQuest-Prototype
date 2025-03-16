@@ -33,7 +33,7 @@ public class TaskEditorPanel : SQ_Panel
         WriteTaskDetails();
     }
 
-    public void Handle_OnBack()
+    public override void Handle_OnBack()
     {
         switch (mode)
         {
@@ -47,7 +47,7 @@ public class TaskEditorPanel : SQ_Panel
                 break;
         }
 
-        GameManager.instance.GetComponent<PanelSwitcher>()?.GoBack();
+        base.Handle_OnBack();
     }
     public void Handle_OnDone()
     {

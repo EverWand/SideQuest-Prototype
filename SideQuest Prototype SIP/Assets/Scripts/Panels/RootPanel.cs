@@ -50,6 +50,12 @@ public class RootPanel : SQ_Panel
         taskList.focusTask?.StartTimer();
     }
 
+    /*When the Catalog Button is Pressed*/
+    public void OpenCatalog_Pressed()
+    {
+        switcher?.SwitchPanel<CatalogPanel>();
+    }
+
     /* Condensed way to open the task editor based on edit mode and what task is being edited. */
     void OpenEditor(TaskEditorPanel.EditorMode mode, Task task)
     {

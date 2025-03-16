@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public abstract class Prize : MonoBehaviour
+public class Prize : MonoBehaviour
 {
     [System.Serializable]
     public struct PrizeDetails
     {
-        public string name { get; private set; }
-        public Sprite icon { get; private set; }
-        public int value { get; private set; }
+        public string name;
+        public Sprite icon;
+        public int value;
     }
+
+    [SerializeField] PrizeDetails details;
+
+    public PrizeDetails Get_Details() { return details; }
 }

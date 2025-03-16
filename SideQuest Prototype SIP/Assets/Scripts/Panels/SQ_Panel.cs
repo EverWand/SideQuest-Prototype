@@ -45,4 +45,8 @@ public abstract class SQ_Panel : MonoBehaviour
         gameObject.SetActive(true);
     }
     protected virtual void Handle_OnClose() { }
+    public virtual void Handle_OnBack()
+    {
+        GameManager.instance.GetComponent<PanelSwitcher>().GoBack();
+    }
 }
