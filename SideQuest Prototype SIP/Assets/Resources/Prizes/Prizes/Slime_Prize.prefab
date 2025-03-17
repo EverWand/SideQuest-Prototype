@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   details:
     name: Slime
-    icon: {fileID: 0}
+    icon: {fileID: -4353491255545049748, guid: 55237a040867b68488bf3e097e8ce450, type: 3}
     value: 100

@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   details:
     name: The Doctor
-    icon: {fileID: 0}
+    icon: {fileID: -6640592690410538478, guid: cd2996cce291e1648b825a2d46d7f9b1, type: 3}
     value: 1000
