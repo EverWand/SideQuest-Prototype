@@ -9,7 +9,10 @@ public class DebugAttack : MonoBehaviour
 
     public float Get_InputTime()
     {
-        float debugTime = TimeConverter.TimeToSeconds(int.Parse(hoursTxt.text), int.Parse(minTxt.text));
+        int hr = hoursTxt.text == string.Empty ? 0 : int.Parse(hoursTxt.text);
+        int min = minTxt.text == string.Empty ? 0 : int.Parse(minTxt.text);
+
+        float debugTime = TimeConverter.TimeToSeconds(hr, min);
         Debug.Log(debugTime);
         //Returns the input time in seconds
         return debugTime;

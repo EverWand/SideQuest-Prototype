@@ -63,6 +63,8 @@ public class FileDataHandler
             //Serialize the data into a json string
             string jsonData = JsonUtility.ToJson(data, true);
 
+            Debug.Log("JSON Print: " + jsonData);
+
             // Open the file stream
             using (FileStream stream = new FileStream(fullPath, FileMode.Create)) {
                 //Write the json data to the file

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class PrizeDisplay : MonoBehaviour
 {
     [SerializeField] Image prizeImage;
-    [SerializeField] public TextMeshProUGUI Count { get; private set; }
-    [SerializeField] Prize.PrizeDetails prizedetails;
-
+    [SerializeField] TextMeshProUGUI countTxt;
+    [SerializeField] Color darkenColor;
+    [SerializeField] public Prize.PrizeDetails prizedetails { get; private set; }
 
     public void setPrize(Prize prize)
     {
@@ -15,21 +15,25 @@ public class PrizeDisplay : MonoBehaviour
         UpdateDisplay();
     }
 
-
-
-    private void Start()
+    public void UpdateDisplay()
     {
         prizeImage.sprite = prizedetails.icon;
-        UpdateCount();
-    }
+        int count = Get_Count();
+        countTxt.text = count.ToString();
 
-    void UpdateDisplay()
-    {
-        prizeImage.sprite = prizedetails.icon;
-        UpdateCount();
+        prizeImage.color = count <= 0 ? darkenColor : Color.white;
     }
-    void UpdateCount()
+    public int Get_Count()
     {
-        //Count.text = Wherever I put the count;
+        if (prizedetails.name == "") { return -1; }
+
+        int count = 0;
+
+        foreach (string prizeName in GameManager.instance.GetComponent<PrizeManager>().Get_CollectedPrizes()) { 
+            if (prizeName == prizedetails.name) { count++; }
+        }
+
+        return count;
+
     }
 }

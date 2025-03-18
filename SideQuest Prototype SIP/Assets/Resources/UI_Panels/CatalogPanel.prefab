@@ -311,6 +311,7 @@ MonoBehaviour:
   catalogContainer: {fileID: 5411877022233108698}
   prizeEntryPrefab: {fileID: 8804765504346756264, guid: 8359f91f89ab6c640a0fc461cd226520, type: 3}
   testEntries: -1
+  entries: []
 --- !u!1 &1868097943695241892
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.05865, y: -25}
+  m_AnchoredPosition: {x: 231.05865, y: -25}
   m_SizeDelta: {x: 222.7653, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1576767455195902709
@@ -1002,7 +1003,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5584465144851312530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8750186224647349648}
+        m_TargetAssemblyTypeName: CatalogPanel, Assembly-CSharp
+        m_MethodName: Handle_OpenPackClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6017137844480449319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,8 +1136,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4845286132608168513}
   m_HandleRect: {fileID: 797324052345625477}
   m_Direction: 2
-  m_Value: 1.000002
-  m_Size: 0.79333335
+  m_Value: 1.0000011
+  m_Size: 0.63
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

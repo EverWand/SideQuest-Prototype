@@ -67,12 +67,28 @@ public class TaskList : MonoBehaviour, ISaveData
     /*=====| SAVE DATA INTERFACE |=====*/
     public void SaveData(ref AppData data)
     {
-        data.taskList = this.tasks;
+        List<Task.TaskDetails> detailList = new List<Task.TaskDetails>();
+
+        foreach (Task task in this.tasks) {
+            detailList.Add(task.taskDetails);
+        }        
+
+        data.savedTasks = detailList;
 
     }
     public void LoadData(AppData data)
     {
-        this.tasks = data.taskList;
-    }
 
+        List<Task.TaskDetails> detailList = data.savedTasks;
+        List<Task> LoadedTasks = new List<Task>();
+
+        foreach (Task.TaskDetails details in detailList) {
+            Task newTask = AddTask();
+            newTask.SetTaskDetails(details);
+
+            LoadedTasks.Add(newTask);
+        }
+
+        this.tasks = LoadedTasks;
+    }
 }

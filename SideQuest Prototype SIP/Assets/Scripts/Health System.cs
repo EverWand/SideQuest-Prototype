@@ -27,7 +27,10 @@ public class HealthSystem : MonoBehaviour
     }
 
     public float Get_healthValue() { return currHealth; }
-
+    public void Set_CurrentHP(float newHP) { 
+        currHealth = newHP;
+        OnHealthChange.Invoke();
+    }
     public void TakeDamage(float damageAmount)
     {
         currHealth = Mathf.Clamp((currHealth - damageAmount), 0, maxHealth);

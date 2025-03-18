@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -409,7 +409,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prizeImage: {fileID: 6376211852351884750}
-  prizedetails:
-    name: Prize
-    icon: {fileID: 8467124297615704143, guid: ff6a8012976a05a43acb373bbbda401d, type: 3}
-    value: 0
+  countTxt: {fileID: 2715420674090507116}
+  darkenColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}

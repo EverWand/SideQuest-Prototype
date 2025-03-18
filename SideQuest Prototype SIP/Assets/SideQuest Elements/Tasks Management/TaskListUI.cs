@@ -12,6 +12,7 @@ public class TaskListUI : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         if (taskList == null)
@@ -20,6 +21,8 @@ public class TaskListUI : MonoBehaviour
         }
 
         DrawTasks();
+
+        taskList.OnTasksUpdated += DrawTasks;
     }
     /* Draws all the saved tasks as Task Displays to the Task List Display*/
     public void DrawTasks()

@@ -1,6 +1,7 @@
 using UnityEngine;
+using CustomUtil;
 
-public class HUD : MonoBehaviour
+public class HUD : MonoBehaviour, ISaveData
 {
     [SerializeField] HealthBar hpBar;
     [SerializeField] DebugAttack debugAttack;
@@ -12,7 +13,7 @@ public class HUD : MonoBehaviour
     {
         hp = GetComponent<HealthSystem>();
     
-          hp.OnDeath += Handle_Death;
+        hp.OnDeath += Handle_Death;
     }
 
     public void Handle_Attack() {
@@ -30,5 +31,17 @@ public class HUD : MonoBehaviour
 
     void Handle_Death() { 
         hp.ResetHP();
+        GameManager.instance.GetComponent<PrizeManager>().AddCurrency(1);
+    }
+
+    /*=====| SAVE DATA |=====*/
+    public void LoadData(AppData data)
+    {
+        this.hp.Set_CurrentHP(data.enemyHealth);
+    }
+
+    public void SaveData(ref AppData data)
+    {
+        data.enemyHealth = this.hp.Get_healthValue();
     }
 }
