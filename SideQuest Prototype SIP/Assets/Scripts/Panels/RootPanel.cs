@@ -9,6 +9,10 @@ public class RootPanel : SQ_Panel
     [SerializeField] TaskListUI taskListUI;
     [SerializeField] TextMeshProUGUI SelectedTaskLabel;
 
+    /*=====| Events |=====*/
+    public delegate void TaskCompletedCall(Task task);
+
+
     private void Start()
     {
         taskList = GameManager.instance.GetComponent<TaskList>();
@@ -16,6 +20,7 @@ public class RootPanel : SQ_Panel
 
         taskListUI.OnTaskClicked += UpdateSelectedTaskDisplay;
     }
+
 
 
     /* EVENT HANDLERS */
@@ -39,6 +44,7 @@ public class RootPanel : SQ_Panel
     {
         taskList.RemoveTask(taskList.focusTask); //Remove the focusTask from the instance's tasklist
     }
+
     /* When the Edit Button is pressed, Open the Editor Panel in Edit Mode */
     public void OpenEditor_Pressed()
     {
@@ -54,6 +60,12 @@ public class RootPanel : SQ_Panel
     public void OpenCatalog_Pressed()
     {
         switcher?.SwitchPanel<CatalogPanel>();
+    }
+
+    public void Handle_TaskComplete()
+    {
+        GameManager.instance.hud.Handle_Attack();
+        taskList.RemoveTask(taskList.focusTask);
     }
 
     /* Condensed way to open the task editor based on edit mode and what task is being edited. */

@@ -17,11 +17,17 @@ public class HUD : MonoBehaviour, ISaveData
     }
 
     public void Handle_Attack() {
+        Task task = GameManager.instance.GetComponent<TaskList>().focusTask;
+        float elapsedTime = task == null ? debugAttack.Get_InputTime() : task.taskDetails.elapsedTime;
+
+        if (task == null) { 
+
+        }
         //GUARD: No task is Selected yet 
         if (GameManager.instance.GetComponent<TaskList>().focusTask == null) { return; }
 
 
-        float damage = GameManager.instance.GetComponent<TaskList>().focusTask.Get_Reward(debugAttack.Get_InputTime());
+        float damage = task.Get_Reward(elapsedTime);
         //Deal Damage to the Health System Reference
         hp.TakeDamage(damage);
 

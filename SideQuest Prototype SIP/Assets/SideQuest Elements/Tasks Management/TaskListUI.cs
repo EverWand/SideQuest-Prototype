@@ -10,9 +10,6 @@ public class TaskListUI : MonoBehaviour
     public delegate void TaskClickedCall(Task task);
     public TaskClickedCall OnTaskClicked;
 
-
-
-
     private void Awake()
     {
         if (taskList == null)
@@ -24,6 +21,7 @@ public class TaskListUI : MonoBehaviour
 
         taskList.OnTasksUpdated += DrawTasks;
     }
+
     /* Draws all the saved tasks as Task Displays to the Task List Display*/
     public void DrawTasks()
     {
@@ -56,8 +54,15 @@ public class TaskListUI : MonoBehaviour
         task.SetTaskDetails(task.taskDetails);
     }
 
-    public void Handle_TaskClicked(Task task)
+    void Handle_TaskClicked(Task task)
     {
-        OnTaskClicked.Invoke(task);
+        if (OnTaskClicked != null)
+        {
+            OnTaskClicked.Invoke(task);
+        }
+        else
+        {
+            Debug.LogWarning("OnTaskClicked is not assigned.");
+        }
     }
 }
